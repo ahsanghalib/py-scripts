@@ -68,6 +68,7 @@ class AsyncCrawlerRepo:
     @classmethod
     def create(cls, file_path: str | Path, mode: FileMode) -> AsyncCrawlerRepo:
         instance: AsyncCrawlerRepo = cls(file_path, mode)
+        _ = instance.open(mode)
         return instance
 
     # with context manager
