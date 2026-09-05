@@ -14,8 +14,9 @@ from playwright.async_api import Browser, async_playwright
 from tqdm import tqdm
 
 BASE_URL = "https://crosswordlabs.com"
-SCRAPE_FILE_PAGES = "./data/crossworld/pages.jsonl"
-SCRAPE_FILE_LINKS = "./data/crossworld/links.jsonl"
+SCRAPE_FILE_PAGES = "./data/crossword/pages.jsonl"
+SCRAPE_FILE_LINKS = "./data/crossword/links.jsonl"
+
 FileMode = Literal["r", "w", "a"]
 
 
@@ -215,7 +216,7 @@ async def save_puzzles_pdf(
         page = await browser.new_page()
         _ = await page.goto(url)
         _ = await page.pdf(
-            path=f"./data/crossworld/pdfs/{file_name}.pdf",
+            path=f"./data/crossword/pdfs/{file_name}.pdf",
             format="A4",
             margin={"top": "1cm", "right": "1cm", "bottom": "1cm", "left": "1cm"},
         )
@@ -224,7 +225,7 @@ async def save_puzzles_pdf(
 
 
 async def main():
-    data_folder = Path("./data/crossworld/")
+    data_folder = Path("./data/crossword/")
     if data_folder.exists() and data_folder.is_dir():
         shutil.rmtree(data_folder)
 
